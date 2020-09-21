@@ -46,3 +46,18 @@ def validate_user_data(data:dict, flag:str):
         return result_email
 
     return True           
+
+# def validate_update_data(data:dict):
+#     result_login = validate_login(data['login'],'update')
+#     if result_login != True:
+#         return result_login
+
+#     result_name = validate_name(data['name'])
+#     if result_name != True:
+#         return result_name 
+
+#     result_password = validate_password(data['password'])
+#     if result_password != True:
+#         return result_password
+
+#     return True
