@@ -44,7 +44,7 @@ def get_all_games_from_user(id:int):
 @app_game.route("/games_user/<id>&<seasson>",methods=["GET"])
 def get_all_games_from_user_and_seasson(id:int,seasson:int):
     games = get_all_games_by_seasson(id,seasson)
-    return jsonify([game.serialize() for game in games])
+    return jsonify(games)
 
 @app_game.route("/games/<id>",methods=["PUT"])
 def update(id:int):
