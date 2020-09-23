@@ -26,35 +26,48 @@
                 <!-- Top of the Form-->
                 <div class="login-form-title" style="background-image: url(../static/img/title_basquete.jpg);">
                     <span class="login-form-title-text">
-                        Seja bem vindo
+                        Cadastro de Usuário
                     </span>
                 </div>
                 <!-- Body of the Form -->
                 <form class="login-form" action="" method="POST">
-                    
+
+                    <div class="wrap-input m-b-26">
+                        <span class="label-input">Nome Completo</span>
+                        <input class="input" type="text" name="fullname" placeholder="Digite seu nome completo" value="{{
+                            request.form.fullname}}">
+						<span class="focus-input"></span>
+                    </div>                    
+
                     <div class="wrap-input m-b-26">
                         <span class="label-input">Usuário</span>
-                        <input class="input" type="text" name="username" placeholder="Entre com o usuário" value="{{
+                        <input class="input" type="text" name="username" placeholder="Entre com o usuário desejado" value="{{
                             request.form.username}}">
 						<span class="focus-input"></span>
                     </div>
 
                     <div class="wrap-input m-b-26" data-validate="A senha é obrigatória">
                         <span class="label-input">Senha</span>
-                        <input class="input" type="text" name="password" placeholder="Digite sua senha" value="{{
+                        <input class="input" type="text" name="password" placeholder="Digite a senha desejada" value="{{
                             request.form.password}}">
+						<span class="focus-input"></span>
+                    </div>
+
+                    <div class="wrap-input m-b-26">
+                        <span class="label-input">Email</span>
+                        <input class="input" type="text" name="email" placeholder="Entre com o seu email" value="{{
+                            request.form.email}}">
 						<span class="focus-input"></span>
                     </div>
 
                     <div class="wrap_form_btn">
                         <button class="form_btn">
-                            Entrar
+                            <p>Cadastrar-se</p>
                         </button>
-                        {% if error %}
-                        <div class="alert alert-warning" role="alert"> {{ error }} </div>
-                        {% endif %}
-    
                     </div>
+                    {% if error %}
+                    <div class="alert alert-warning mt-3" role="alert"> {{ error }} </div>
+                    {% endif %}
                 </form>
             </div>
         </div>           

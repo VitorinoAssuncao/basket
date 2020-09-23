@@ -5,6 +5,8 @@ from flask import Flask
 from flask import render_template
 from flask import redirect
 from flask import url_for
+from flask import session
+
 from settings import DEBUG
 from settings import HOST
 from settings import PORT
@@ -19,19 +21,34 @@ from user_api.validations.user_validations import validate_user_data
 
 app_user = Blueprint("app_user",__name__)
 
-@app_user.route("/users",methods=["POST"])
+@app_user.route("/users",methods=["GET","POST"])
 def post():
-    user_data = request.get_json()
-    result = validate_user_data(user_data,"creation") 
-    if result == True:
-        user = create(user_data)
-        return jsonify(user.serialize()),201
+    error = " "
+    result = False
+    if request.method == 'POST':
+        user_data = {
+            'login': request.form['username'],
+            'password': request.form['password'],
+            'name': request.form['fullname'],
+            'email': request.form['email']
+        }
+        print(user_data)
+        result = validate_user_data(user_data,"creation") 
+        if result != True:
+            error = result
+            return render_template("register.html",error=error)
+        else:            
+            print(result)
+            user = create(user_data)
+            user_data = user.serialize()
     else:
-        return result
+        return render_template("register.html")
+    return render_template("user_page.html",user=user_data)
 
 @app_user.route("/users/login",methods=["GET","POST"])
 def login_user():
     error = " "
+    login_result = False
     if request.method == 'POST':
         login_data = {
             'login': request.form['username'],
@@ -40,10 +57,12 @@ def login_user():
         login_result = login(login_data['login'],login_data['password'])
         if login_result == False:
             error = "Login ou senha incorretos."
-                return render_template("main.html",error)
+            return render_template("main.html", error=error)
+        else:
+             session['user_id'] = login_result.user_id
     else:
         return render_template("main.html")    
-    return render_template('sucess.html')
+    return render_template("user_page.html")
 
 @app_user.route("/users/<id>",methods=["GET"])
 def get_user(id:int):

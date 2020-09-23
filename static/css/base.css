@@ -338,3 +338,9 @@ iframe {
   .form_btn:hover {
     background-color: #333333;
   }
+
+/* --------------------- Form --------------------- */
+
+.error{
+  padding: 0 20px;
+  }
