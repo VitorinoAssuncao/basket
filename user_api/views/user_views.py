@@ -2,6 +2,9 @@ from flask import Blueprint
 from flask import jsonify
 from flask import request
 from flask import Flask
+from flask import render_template
+from flask import redirect
+from flask import url_for
 from settings import DEBUG
 from settings import HOST
 from settings import PORT
@@ -26,14 +29,21 @@ def post():
     else:
         return result
 
-@app_user.route("/users/login",methods=["POST"])
+@app_user.route("/users/login",methods=["GET","POST"])
 def login_user():
-    login_data = request.get_json()
-    login_result = login(login_data['login'],login_data['password'])
-    if login_result == False:
-        return "Senha Invalida",400
+    error = " "
+    if request.method == 'POST':
+        login_data = {
+            'login': request.form['username'],
+            'password': request.form['password']
+        }
+        login_result = login(login_data['login'],login_data['password'])
+        if login_result == False:
+            error = "Login ou senha incorretos."
+                return render_template("main.html",error)
     else:
-        return jsonify(login_result.serialize()),200
+        return render_template("main.html")    
+    return render_template('sucess.html')
 
 @app_user.route("/users/<id>",methods=["GET"])
 def get_user(id:int):

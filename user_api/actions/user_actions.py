@@ -41,8 +41,10 @@ def delete_user(id:int) -> str:
 
 def login(login_data:str,password:str) -> User:
     user = User.query.filter_by(user_login=login_data).first()
-    if check_password_hash(user.user_password,password):
-        return user
+    print(user)
+    if user != None:
+        if check_password_hash(user.user_password,password):
+            return user
     else:
         return False
 

@@ -10,6 +10,6 @@ SQLALCHEMY_DATABASE_URI = os.path.join('mysql+pymysql://dev:dev@localhost/basket
 SQLALCHEMY_TRACK_MODIFICATIONS = os.getenv('SQLALCHEMY_TRACK_MODIFICATIONS',True)
 
 HOST = 'localhost'
-PORT = '5000'
+PORT = '5002'
 DEBUG = True
 SECRET_KEY = 'basket'
