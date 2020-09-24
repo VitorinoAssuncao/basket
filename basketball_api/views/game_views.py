@@ -2,6 +2,11 @@ from flask import Blueprint
 from flask import jsonify
 from flask import request
 from flask import Flask
+from flask import session
+from flask import render_template
+from flask import redirect
+from flask import url_for
+
 from settings import DEBUG
 from settings import HOST
 from settings import PORT
@@ -17,22 +22,27 @@ from basketball_api.actions.game_actions import delete_game
 
 app_game = Blueprint("app_game",__name__)
 
-@app_game.route("/games",methods=["POST"])
+@app_game.route("/games",methods=["GET","POST"])
 def post():
-    game_data = request.get_json()
-    result = True #validate_user_data(user_data,"creation") 
-    if result == True:
+    error = ''
+    if request.method == 'POST':
+        game_data = {
+        'user_id': session.get('user_id'),
+        'number': request.form['game'],
+        'seasson': request.form['seasson'],
+        'points': request.form['points']
+        }
         game = create(game_data)
         return jsonify(game.serialize()),201
     else:
-        return result
+        return render_template('games.html')
 
 @app_game.route("/games/<id>",methods=["GET"])
 def get_game(id:int):
     game = get_game_by_id(id)
     return jsonify(game.serialize()),200
 
-@app_game.route("/games",methods=["GET"])
+@app_game.route("/games/all",methods=["GET"])
 def get_all():
     return jsonify([game.serialize() for game in get_all_games()])
 
@@ -44,7 +54,7 @@ def get_all_games_from_user(id:int):
 @app_game.route("/games_user/<id>&<seasson>",methods=["GET"])
 def get_all_games_from_user_and_seasson(id:int,seasson:int):
     games = get_all_games_by_seasson(id,seasson)
-    return jsonify(games)
+    return render_template("game_info.html",games_data=games)
 
 @app_game.route("/games/<id>",methods=["PUT"])
 def update(id:int):

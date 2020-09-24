@@ -26,40 +26,41 @@
                 <!-- Top of the Form-->
                 <div class="login-form-title" style="background-image: url(../static/img/title_basquete.jpg);">
                     <span class="login-form-title-text">
-                        Seja bem vindo
+                        Registro do Resultado das Partidas
                     </span>
                 </div>
                 <!-- Body of the Form -->
-                <form class="login-form" action="" method="POST">
-                    
-                    <div class="wrap-input m-b-26">
-                        <span class="label-input">Usuário</span>
-                        <input class="input" type="text" name="username" placeholder="Entre com o usuário" value="{{
-                            request.form.username}}">
-						<span class="focus-input"></span>
-                    </div>
-
-                    <div class="wrap-input m-b-26" data-validate="A senha é obrigatória">
-                        <span class="label-input">Senha</span>
-                        <input class="input" type="password" name="password" placeholder="Digite sua senha" value="{{
-                            request.form.password}}">
-						<span class="focus-input"></span>
-                    </div>
+                    <table class="table table-bordered table-hover w-100 m-1">
+                        <thead>
+                            <tr>
+                                <th scope="bg-warning col">Partida</th>
+                                <th scope="bg-warning col">Pontuação</th>
+                                <th scope="bg-warning col">Menor Pontuação</th>
+                                <th scope="bg-warning col">Maior Pontuação</th>
+                                <th scope="bg-warning col">Recorde de Menor Pontuação</th>
+                                <th scope="bg-warning col">Recorde de Maior Pontuação</th>
+                            </tr>
+                        {% for game in games_data %}
+                        </thead>
+                        <tr>
+                            <td>{{game['number']}}</td>
+                            <td>{{game['points']}}</td>
+                            <td>{{game['min_value']}}</td>
+                            <td>{{game['max_value']}}</td>
+                            <td>{{game['record_min_value']}}</td>
+                            <td>{{game['record_max_value']}}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
 
                     <div class="wrap_form_btn">
                         <button class="form_btn">
-                            Entrar
+                            <p>Registrar</p>
                         </button>
-
-                        <button class="form_btn ml-3" formaction="/users/registry" method="GET">
-                            Registrar-se
-                        </button>
-                        {% if error %}
-                        <div class="alert alert-warning" role="alert"> {{ error }} </div>
-                        {% endif %}
-    
                     </div>
-                </form>
+                    {% if error %}
+                    <div class="alert alert-warning mt-3" role="alert"> {{ error }} </div>
+                    {% endif %}
             </div>
         </div>           
     </div>

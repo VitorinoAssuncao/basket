@@ -26,39 +26,41 @@
                 <!-- Top of the Form-->
                 <div class="login-form-title" style="background-image: url(../static/img/title_basquete.jpg);">
                     <span class="login-form-title-text">
-                        Seja bem vindo
+                        Registro do Resultado das Partidas
                     </span>
                 </div>
                 <!-- Body of the Form -->
                 <form class="login-form" action="" method="POST">
-                    
+
                     <div class="wrap-input m-b-26">
-                        <span class="label-input">Usuário</span>
-                        <input class="input" type="text" name="username" placeholder="Entre com o usuário" value="{{
-                            request.form.username}}">
+                        <span class="label-input">Temporada</span>
+                        <input class="input" type="number" name="seasson" placeholder="Digite o número da temporada" value="{{
+                            request.form.seasson}}">
+						<span class="focus-input"></span>
+                    </div>                    
+
+                    <div class="wrap-input m-b-26">
+                        <span class="label-input">Número da Partida</span>
+                        <input class="input" type="number" name="game" placeholder="Digite o número da partida" value="{{
+                            request.form.game}}">
 						<span class="focus-input"></span>
                     </div>
 
                     <div class="wrap-input m-b-26" data-validate="A senha é obrigatória">
-                        <span class="label-input">Senha</span>
-                        <input class="input" type="password" name="password" placeholder="Digite sua senha" value="{{
-                            request.form.password}}">
+                        <span class="label-input">Resultado</span>
+                        <input class="input" type="number" name="points" placeholder="Digite a quantidades de ponto feitos na partida" value="{{
+                            request.form.points}}">
 						<span class="focus-input"></span>
                     </div>
 
                     <div class="wrap_form_btn">
                         <button class="form_btn">
-                            Entrar
+                            <p>Registrar</p>
                         </button>
-
-                        <button class="form_btn ml-3" formaction="/users/registry" method="GET">
-                            Registrar-se
-                        </button>
-                        {% if error %}
-                        <div class="alert alert-warning" role="alert"> {{ error }} </div>
-                        {% endif %}
-    
                     </div>
+                    {% if error %}
+                    <div class="alert alert-warning mt-3" role="alert"> {{ error }} </div>
+                    {% endif %}
                 </form>
             </div>
         </div>           

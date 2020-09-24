@@ -62,7 +62,6 @@ def get_all_games_by_seasson(seasson:int, user_id:int) -> dict:
         game_dict[cont]['record_min_value'] = record_min_value
         game_dict[cont]['record_max_value'] = record_max_value
         cont += 1
-        print(game_dict)
     return game_dict
 
 

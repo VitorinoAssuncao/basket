@@ -21,31 +21,7 @@ from user_api.validations.user_validations import validate_user_data
 
 app_user = Blueprint("app_user",__name__)
 
-@app_user.route("/users",methods=["GET","POST"])
-def post():
-    error = " "
-    result = False
-    if request.method == 'POST':
-        user_data = {
-            'login': request.form['username'],
-            'password': request.form['password'],
-            'name': request.form['fullname'],
-            'email': request.form['email']
-        }
-        print(user_data)
-        result = validate_user_data(user_data,"creation") 
-        if result != True:
-            error = result
-            return render_template("register.html",error=error)
-        else:            
-            print(result)
-            user = create(user_data)
-            user_data = user.serialize()
-    else:
-        return render_template("register.html")
-    return render_template("user_page.html",user=user_data)
-
-@app_user.route("/users/login",methods=["GET","POST"])
+@app_user.route("/",methods=["GET","POST"])
 def login_user():
     error = " "
     login_result = False
@@ -62,26 +38,55 @@ def login_user():
              session['user_id'] = login_result.user_id
     else:
         return render_template("main.html")    
-    return render_template("user_page.html")
+    return redirect("/users/"+str(session.get('user_id')))
+
+@app_user.route("/users/registry",methods=["GET","POST"])
+def post():
+    error = " "
+    result = False
+    if request.method == 'POST':
+        user_data = {
+            'login': request.form['username'],
+            'password': request.form['password'],
+            'name': request.form['fullname'],
+            'email': request.form['email']
+        }
+        print(user_data)
+        result = validate_user_data(user_data,"creation") 
+        if result != True:
+            error = result
+            return render_template("register.html",error=error)
+        else:            
+            user = create(user_data)
+            user_data = user.serialize()
+    else:
+        return render_template("register.html")
+    return render_template("user_page.html",user=user_data)
 
 @app_user.route("/users/<id>",methods=["GET"])
 def get_user(id:int):
     user = get_user_by_id(id)
-    return jsonify(user.serialize()),200
+    user_data = user.serialize()
+    return render_template("user_page.html",user=user_data)
 
-@app_user.route("/users",methods=["GET"])
-def get_all():
-    return jsonify([user.serialize() for user in get_all_user()])
-
-@app_user.route("/users/<user_id>",methods=["PUT"])
+@app_user.route("/users/<user_id>",methods=["POST"])
 def update(user_id:int):
-    update_data = request.get_json()
+    update_data = {
+        'login': request.form['username'],
+        'password': request.form['password'],
+        'name': request.form['fullname'],
+        'email': request.form['email']
+    }
     result = validate_user_data(update_data,"update")
     if result == True:
         updated_user = update_user(user_id,update_data)
         return jsonify(updated_user.serialize())
     else:
         return result
+
+@app_user.route("/users",methods=["GET"])
+def get_all():
+    return jsonify([user.serialize() for user in get_all_user()])
 
 @app_user.route("/users/<user_id>",methods=["DELETE"])
 def delete(user_id:int):
