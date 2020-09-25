@@ -61,48 +61,39 @@
 
     <!---------------------------------- End Navbar ---------------------------------->
 
-    <div class="conteiner-fluid shadow-lg container-xl h-75 bg-light rounded" style="width: 95%; margin-left: 6.5%; margin-top:2%;">
-        <div class="row h-75 m-0">
-            <div class="col-10 h-75 m-2">
-                <form class="login-form" action="" method="POST">
-                    <p> Olá {{user.name}}. Está é a pagina com seus dados cadastrais, para acessar as outras áreas de nosso sistema, por favor utilize os caminhos na barra de navegação na área superior da tela.</p>
+    <div class="conteiner-fluid shadow-lg container-xl bg-light rounded" style="width: 95%; margin-left: 6.5%; margin-top:2%;">
+        <div class="row m-0">
+            <div class="col-10 m-2">
+                <form class="" action="" method="POST">
 
+                <!-- Body of the Table -->
+                <table class="table table-bordered table-hover w-100 m-1 mt-2">
+                    <thead>
+                        <tr>
+                            <th scope="bg-warning col">Partida</th>
+                            <th scope="bg-warning col">Pontuação</th>
+                            <th scope="bg-warning col">Menor Pontuação</th>
+                            <th scope="bg-warning col">Maior Pontuação</th>
+                            <th scope="bg-warning col">Recorde de Menor Pontuação</th>
+                            <th scope="bg-warning col">Recorde de Maior Pontuação</th>
+                        </tr>
+                    {% for game in games_data %}
+                    </thead>
+                    <tr>
+                        <td>{{game['number']}}</td>
+                        <td>{{game['points']}}</td>
+                        <td>{{game['min_value']}}</td>
+                        <td>{{game['max_value']}}</td>
+                        <td>{{game['record_min_value']}}</td>
+                        <td>{{game['record_max_value']}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                
+                {% if error %}
+                  <div class="alert alert-warning m-3" role="alert"> {{ error }} </div>
+                {% endif %}
 
-                    <div class="wrap-input mt-5 m-b-26">
-                        <span class="label-input">Código de Usuário</span>
-                        <input class="input disabled" type="text" name="username" value="# {{
-                            user.id}}">
-						<span class="focus-input"></span>
-                    </div>
-                    <div class="wrap-input m-b-26">
-                        <span class="label-input">Nome Completo</span>
-                        <input class="input disabled" type="text" name="username" value="{{
-                            user.name}}">
-						<span class="focus-input"></span>
-                    </div>
-                    <div class="wrap-input m-b-26">
-                        <span class="label-input">Usuário</span>
-                        <input class="input disabled" type="text" name="username" value="{{
-                            user.login}}">
-						<span class="focus-input"></span>
-                    </div>
-
-                    <div class="wrap-input m-b-26">
-                        <span class="label-input">Email</span>
-                        <input class="input disabled" type="text" name="email" value="{{
-                            user.email}}">
-						<span class="focus-input"></span>
-                    </div>
-
-                    <div class="wrap_form_btn">
-                        <button class="form_btn" formaction="" method="">
-                            <a href="">Editar Dados</a>
-                        </button>
-                    </div>
-
-                    {% if error %}
-                    <div class="alert alert-warning m-3" role="alert"> {{ error }} </div>
-                    {% endif %}
                 </form>
             </div>
         </div>

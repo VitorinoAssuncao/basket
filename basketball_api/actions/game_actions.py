@@ -41,7 +41,7 @@ def get_all_games_by_seasson(seasson:int, user_id:int) -> dict:
     cont = 0
     game_dict = []
 
-    all_games = Game.query.filter_by(game_seasson = seasson,game_user_id = user_id).all()
+    all_games = Game.query.filter_by(game_seasson = seasson,game_user_id = user_id).order_by("game_number").all()
     for game in all_games:
         game_dict.append(game.serialize())
         print(game_dict)

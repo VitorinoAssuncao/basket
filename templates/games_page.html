@@ -64,46 +64,47 @@
     <div class="conteiner-fluid shadow-lg container-xl h-75 bg-light rounded" style="width: 95%; margin-left: 6.5%; margin-top:2%;">
         <div class="row h-75 m-0">
             <div class="col-10 h-75 m-2">
-                <form class="login-form" action="" method="POST">
-                    <p> Olá {{user.name}}. Está é a pagina com seus dados cadastrais, para acessar as outras áreas de nosso sistema, por favor utilize os caminhos na barra de navegação na área superior da tela.</p>
+                <form class="login-form" method="GET">
+                    <p>Sua partida foi registrada com sucesso, segue abaixo as informações.</p>
+                  <div class="wrap-input m-b-26">
+                    <span class="label-input">#</span>
+                    <input class="input" type="number" name="seasson" placeholder="Digite o número da temporada" value="{{
+                        games_data.id}}">
+                    <span class="focus-input"></span>
+                  </div>
 
+                  <div class="wrap-input m-b-26">
+                        <span class="label-input">Temporada</span>
+                        <input class="input" type="number" name="seasson" placeholder="Digite o número da temporada" value="{{
+                            games_data.seasson}}">
+            						<span class="focus-input"></span>
+                  </div>                    
 
-                    <div class="wrap-input mt-5 m-b-26">
-                        <span class="label-input">Código de Usuário</span>
-                        <input class="input disabled" type="text" name="username" value="# {{
-                            user.id}}">
-						<span class="focus-input"></span>
-                    </div>
-                    <div class="wrap-input m-b-26">
-                        <span class="label-input">Nome Completo</span>
-                        <input class="input disabled" type="text" name="username" value="{{
-                            user.name}}">
-						<span class="focus-input"></span>
-                    </div>
-                    <div class="wrap-input m-b-26">
-                        <span class="label-input">Usuário</span>
-                        <input class="input disabled" type="text" name="username" value="{{
-                            user.login}}">
-						<span class="focus-input"></span>
-                    </div>
+                  <div class="wrap-input m-b-26">
+                        <span class="label-input">Número da Partida</span>
+                        <input class="input" type="number" name="number" placeholder="Digite o número da partida" value="{{
+                            games_data.number}}">
+						            <span class="focus-input"></span>
+                  </div>
 
-                    <div class="wrap-input m-b-26">
-                        <span class="label-input">Email</span>
-                        <input class="input disabled" type="text" name="email" value="{{
-                            user.email}}">
-						<span class="focus-input"></span>
-                    </div>
+                  <div class="wrap-input m-b-26" data-validate="A senha é obrigatória">
+                        <span class="label-input">Resultado</span>
+                        <input class="input" type="number" name="points" placeholder="Digite a quantidades de ponto feitos na partida" value="{{
+                            games_data.points}}">
+						            <span class="focus-input"></span>
+                  </div>
+                  
+                  <div class="wrap_form_btn">
+                    <button class="form_btn" formaction="" method="GET">
+                        <a href="">Registrar</a>
+                    </button>
+                </div>
 
-                    <div class="wrap_form_btn">
-                        <button class="form_btn" formaction="" method="">
-                            <a href="">Editar Dados</a>
-                        </button>
-                    </div>
+                {% if error %}
+                <div class="alert alert-warning m-3" role="alert"> {{ error }} </div>
+                {% endif %}
 
-                    {% if error %}
-                    <div class="alert alert-warning m-3" role="alert"> {{ error }} </div>
-                    {% endif %}
-                </form>
+                    </form>
             </div>
         </div>
     </div>

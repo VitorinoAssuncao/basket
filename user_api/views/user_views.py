@@ -55,12 +55,12 @@ def post():
         result = validate_user_data(user_data,"creation") 
         if result != True:
             error = result
-            return render_template("register.html",error=error)
+            return render_template("user_register.html",error=error)
         else:            
             user = create(user_data)
             user_data = user.serialize()
     else:
-        return render_template("register.html")
+        return render_template("user_register.html")
     return render_template("user_page.html",user=user_data)
 
 @app_user.route("/users/<id>",methods=["GET"])
@@ -84,11 +84,13 @@ def update(user_id:int):
     else:
         return result
 
-@app_user.route("/users",methods=["GET"])
-def get_all():
-    return jsonify([user.serialize() for user in get_all_user()])
+#  Neste pedaço estão colocadas rotas inativadas, para possível uso futuro 
 
-@app_user.route("/users/<user_id>",methods=["DELETE"])
-def delete(user_id:int):
-    result =  delete_user(user_id)
-    return result,200
+# @app_user.route("/users",methods=["GET"])
+# def get_all():
+#     return jsonify([user.serialize() for user in get_all_user()])
+
+# @app_user.route("/users/<user_id>",methods=["DELETE"])
+# def delete(user_id:int):
+#     result =  delete_user(user_id)
+#     return result,200
