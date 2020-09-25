@@ -1,1 +1,1 @@
-web: python run.py basketball-publica
+web: python run.py
