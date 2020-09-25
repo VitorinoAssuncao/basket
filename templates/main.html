@@ -30,7 +30,7 @@
                     </span>
                 </div>
                 <!-- Body of the Form -->
-                <form class="login-form" action="" method="POST">
+                <form class="login-form" method="POST">
                     
                     <div class="wrap-input m-b-26">
                         <span class="label-input">Usuário</span>
@@ -47,17 +47,16 @@
                     </div>
 
                     <div class="wrap_form_btn">
-                        <button class="form_btn">
+                        <button class="form_btn" formaction="../" method="POST">
                             Entrar
                         </button>
 
-                        <button class="form_btn ml-3" formaction="/users/registry" method="GET">
+                        <button class="form_btn ml-3" formaction="../users/registry" method="GET">
                             Registrar-se
                         </button>
                         {% if error %}
                         <div class="alert alert-warning m-3" role="alert"> {{ error }} </div>
                         {% endif %}
-    
                     </div>
                 </form>
             </div>

@@ -36,10 +36,10 @@ def validate_user_data(data:dict, flag:str):
     result_name = validate_name(data['name'])
     if result_name != True:
         return result_name 
-
-    result_password = validate_password(data['password'])
-    if result_password != True:
-        return result_password
+    if flag=="creation":
+        result_password = validate_password(data['password'])
+        if result_password != True:
+            return result_password
 
     result_email = validate_email(data['email'])
     if result_email != True:

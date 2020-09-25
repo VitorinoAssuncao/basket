@@ -23,6 +23,7 @@ app_user = Blueprint("app_user",__name__)
 
 @app_user.route("/",methods=["GET","POST"])
 def login_user():
+    session['user_id'] = None
     error = " "
     login_result = False
     if request.method == 'POST':
@@ -44,14 +45,17 @@ def login_user():
 def post():
     error = " "
     result = False
+    if session['user_id'] == None:
+        return render_template("user_register.html")
+
     if request.method == 'POST':
+        print("entrou aqui")
         user_data = {
             'login': request.form['username'],
             'password': request.form['password'],
             'name': request.form['fullname'],
             'email': request.form['email']
         }
-        print(user_data)
         result = validate_user_data(user_data,"creation") 
         if result != True:
             error = result
@@ -59,8 +63,6 @@ def post():
         else:            
             user = create(user_data)
             user_data = user.serialize()
-    else:
-        return render_template("user_register.html")
     return render_template("user_page.html",user=user_data)
 
 @app_user.route("/users/<id>",methods=["GET"])
@@ -73,16 +75,16 @@ def get_user(id:int):
 def update(user_id:int):
     update_data = {
         'login': request.form['username'],
-        'password': request.form['password'],
         'name': request.form['fullname'],
         'email': request.form['email']
     }
     result = validate_user_data(update_data,"update")
     if result == True:
         updated_user = update_user(user_id,update_data)
-        return jsonify(updated_user.serialize())
+        user_data = updated_user.serialize()
+        return render_template("user_page.html",user=user_data)
     else:
-        return result
+        return render_template("user_page.html",error=result)
 
 #  Neste pedaço estão colocadas rotas inativadas, para possível uso futuro 
 
