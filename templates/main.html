@@ -47,18 +47,18 @@
                     </div>
 
                     <div class="wrap_form_btn">
-                        <button class="form_btn" formaction="../" method="POST">
+                        <button class="form_btn" formaction="../" method="POST" name="btn_login">
                             Entrar
-                        </button>
-
-                        <button class="form_btn ml-3" formaction="../users/registry" method="GET">
-                            Registrar-se
                         </button>
                         {% if error %}
                         <div class="alert alert-warning m-3" role="alert"> {{ error }} </div>
                         {% endif %}
                     </div>
                 </form>
+                    <button class="form_btn ml-3" formaction="../users/registry" method="GET" name="btn_register">
+                        Registrar-se
+                    </button>
+
             </div>
         </div>           
     </div>

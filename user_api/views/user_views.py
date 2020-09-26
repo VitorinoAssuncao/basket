@@ -63,6 +63,7 @@ def post():
     else:
         return render_template("user_register.html")
 
+    session['user_id'] = user_data['id']
     return render_template("user_page.html",user=user_data)
 
 @app_user.route("/users/<id>",methods=["GET"])
