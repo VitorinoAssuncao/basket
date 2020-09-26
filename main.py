@@ -12,4 +12,5 @@ migrate.init_app(app,db)
 app.register_blueprint(app_user)
 app.register_blueprint(app_game)
 
-app.run()
+port = int(os.environ.get("PORT", 5000))
+app.run(debug=True, host='0.0.0.0', port=port)
