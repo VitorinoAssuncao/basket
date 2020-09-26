@@ -13,6 +13,6 @@ migrate.init_app(app,db)
 app.register_blueprint(app_user)
 app.register_blueprint(app_game)
 
-port = os.getenv('PORT', default=8000)
-print(os.getenv('PORT'))
+port = os.environ.get('PORT', default=8000)
+print(os.environ.get('PORT'))
 app.run(debug=True, host='0.0.0.0', port=port)
