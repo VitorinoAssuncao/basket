@@ -44,12 +44,9 @@ def login_user():
 @app_user.route("/users/registry",methods=["GET","POST"])
 def post():
     error = " "
-    result = False
-    if session['user_id'] == None:
-        return render_template("user_register.html")
+    result = None
 
-    if request.method == 'POST':
-        print("entrou aqui")
+    if request.method == 'POST' :
         user_data = {
             'login': request.form['username'],
             'password': request.form['password'],
@@ -63,6 +60,9 @@ def post():
         else:            
             user = create(user_data)
             user_data = user.serialize()
+    else:
+        return render_template("user_register.html")
+
     return render_template("user_page.html",user=user_data)
 
 @app_user.route("/users/<id>",methods=["GET"])
