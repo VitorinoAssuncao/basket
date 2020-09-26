@@ -5,6 +5,6 @@ SQLALCHEMY_DATABASE_URI = os.path.join('postgres://krbasfbcuwugru:ecd961db27e0cf
 SQLALCHEMY_TRACK_MODIFICATIONS = os.getenv('SQLALCHEMY_TRACK_MODIFICATIONS',True)
 
 HOST = '127.0.0.1'
-PORT = int(os.environ.get("PORT", default=8000))
+PORT = int(os.environ.get("PORT", default=5000))
 DEBUG = True
 SECRET_KEY = 'basket'
