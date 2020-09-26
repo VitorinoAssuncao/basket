@@ -12,5 +12,4 @@ migrate.init_app(app,db)
 app.register_blueprint(app_user)
 app.register_blueprint(app_game)
 
-def app_run():
-    app.run()
+app.run()
