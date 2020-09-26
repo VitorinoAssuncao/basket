@@ -1,3 +1,4 @@
+import os
 from flask import Flask
 from database.database import db
 from database.database import migrate
