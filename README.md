@@ -55,9 +55,9 @@ Feito isso, basta rodar o seguinte comando que o instalador do python irá insta
 
 Este projeto consiste de duas mini-aplicações que trabalham em momentos específicos:
 
-*user_api: Esta é a estrutura responsável por cadastro de usuários, seu login e verificações necessárias, assim como integrações futuras com novas estruturas. É essêncial e o passo inicial da aplicação, em vista que é necessário se ter um usuário para poder lançar os jogos.
+• user_api: Esta é a estrutura responsável por cadastro de usuários, seu login e verificações necessárias, assim como integrações futuras com novas estruturas. É essêncial e o passo inicial da aplicação, em vista que é necessário se ter um usuário para poder lançar os jogos.
 
-*basketball_api: Esta é a estrutura responsável pelos cadastros de partidas, controle de informações das partidas, assim como a visualização do rank por temporada, para poder funcionar apropriadamente é preciso que a varíavel de ambiente "user_id" esteja preenchida, de forma que o sistema sempre saiba qual o usuário que está mexendo na pagina.
+• basketball_api: Esta é a estrutura responsável pelos cadastros de partidas, controle de informações das partidas, assim como a visualização do rank por temporada, para poder funcionar apropriadamente é preciso que a varíavel de ambiente "user_id" esteja preenchida, de forma que o sistema sempre saiba qual o usuário que está mexendo na pagina.
 
 ## EndPoints
 
