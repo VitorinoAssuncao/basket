@@ -34,7 +34,6 @@ def post():
         }
 
         result = validate_game_data(game_data)
-        print(result)
         if result != True:
             error = result
             return render_template('games_register.html',error=error)

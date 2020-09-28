@@ -35,14 +35,12 @@ def update_user(user_id:int,data_to_update:dict) -> User:
     return user_updated
 
 def delete_user(id:int) -> str:
-
     User.query.filter_by(user_id=id).delete()
     commit()
     return "Usuário removido com sucesso." 
 
 def login(login_data:str,password:str) -> User:
-   
-    user = User.query.filter_by(user_login=login_data).first()
+    user = User.query.filter_by(user_login=login_data).first()  
     if user != None:
         if check_password_hash(user.user_password,password):
             return user

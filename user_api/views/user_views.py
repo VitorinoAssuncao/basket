@@ -23,22 +23,27 @@ app_user = Blueprint("app_user",__name__)
 
 @app_user.route("/",methods=["GET","POST"])
 def login_user():
-    session['user_id'] = None
-    error = " "
-    login_result = False
+
+    session['user_id'] = None       #Limpa a varíavel de sessão ao carregar a pagina, para que funcione como logoff
+    error = " "                     # Varíavel para armazenar o erro
+
     if request.method == 'POST':
         login_data = {
             'login': request.form['username'],
             'password': request.form['password']
         }
+
         login_result = login(login_data['login'],login_data['password'])
         if login_result == False:
             error = "Login ou senha incorretos."
             return render_template("main.html", error=error)
+
         else:
-             session['user_id'] = login_result.user_id
+            session['user_id'] = login_result.user_id
+
     else:
         return render_template("main.html")    
+
     return redirect("/users/"+str(session.get('user_id')))
 
 @app_user.route("/users/registry",methods=["GET","POST"])

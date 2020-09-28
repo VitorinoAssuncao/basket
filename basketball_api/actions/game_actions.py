@@ -33,7 +33,7 @@ def get_all_games_by_user(user_id:int) -> dict:
     all_games = Game.query.filter_by(game_user_id = user_id).all()
     return all_games
 
-def get_all_games_by_seasson(seasson:int, user_id:int) -> dict:
+def get_all_games_by_seasson(user_id:int,seasson:int) -> dict:
     min_value = 0
     max_value = 0
     record_min_value = 0
@@ -44,7 +44,6 @@ def get_all_games_by_seasson(seasson:int, user_id:int) -> dict:
     all_games = Game.query.filter_by(game_seasson = seasson,game_user_id = user_id).order_by("game_number").all()
     for game in all_games:
         game_dict.append(game.serialize())
-        print(game_dict)
         if (min_value == 0 and max_value == 0):
             min_value = game_dict[cont]['points']
             max_value = game_dict[cont]['points']
