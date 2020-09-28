@@ -15,3 +15,4 @@ Para tal foram selecionadas as seguintes técnologias:
 
 • Deploy - Heroku: Atualmente esse projeto se encontra para acesso na rede através do endereço abaixo:
  >> basketball-publica.herokuapp.com
+ Como foi utilizada a opção de conta de desenvolvimento por Hobby (gratuita), isso faz com que possa ter algumas limitações (até 20 acessos simultaneos, 600 Minutos de conexão por dia)
