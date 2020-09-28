@@ -6,13 +6,13 @@ Para tal foram selecionadas as seguintes técnologias:
 
 * [Python-Flask](https://flask.palletsprojects.com/en/1.1.x/) Foi se utilizada a linguagem python tanto por ser robusta e eficiente, quanto pelo microframework Flask ser bastante eficiente, e possuir fácil manutenção em vista de sua leve curva de aprendizado.
 
-* [RM - Flask-SQLAlchemy] Foi utilizado o ORM SQLAlchemy em sua versão integrada com o Flask, para que se tivesse uma separação da camada de dados do banco da codificação, permitindo dessa forma que possamos modificar o banco utilizado conforme desejado (Como pode ser observado no campo settings, onde se tem encaminhamento para um banco de dados MySQL e PostgreSQL).
+* [ORM - Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/) Foi utilizado o ORM SQLAlchemy em sua versão integrada com o Flask, para que se tivesse uma separação da camada de dados do banco da codificação, permitindo dessa forma que possamos modificar o banco utilizado conforme desejado (Como pode ser observado no campo settings, onde se tem encaminhamento para um banco de dados MySQL e PostgreSQL).
 
-* [Banco de Dados Postgresql] Como dito anteriormente, com o ORM a seleção pelo banco de dados se tornou secundário, neste caso selecionei o postgresql por conta da hospedagem gratuíta utilizada. Caso se tenha acesso a um banco mysql ou de outro baseado em linguagem SQL, basta alterar os dados de conexão do mesmo.
+* [Banco de Dados Postgresql](https://www.postgresql.org) Como dito anteriormente, com o ORM a seleção pelo banco de dados se tornou secundário, neste caso selecionei o postgresql por conta da hospedagem gratuíta utilizada. Caso se tenha acesso a um banco mysql ou de outro baseado em linguagem SQL, basta alterar os dados de conexão do mesmo.
 
-* [Frontend - Boostrap] Caractéristicas do framework para frontend Bootstrap foram utilizadas para garantir uma melhor visualização e maior harmonia das paginas, dessa forma garantindo uma melhor qualidade visual.
+* [Frontend - Boostrap](https://getbootstrap.com) Caractéristicas do framework para frontend Bootstrap foram utilizadas para garantir uma melhor visualização e maior harmonia das paginas, dessa forma garantindo uma melhor qualidade visual.
 
-* [Deploy - Heroku] Atualmente esse projeto se encontra para acesso na rede através do endereço abaixo:
+* [Deploy - Heroku](heroku.com) Atualmente esse projeto se encontra para acesso na rede através do endereço abaixo:
  ```basketball-publica.herokuapp.com```
 
 Como foi utilizada a opção de conta de desenvolvimento por Hobby (gratuita), isso faz com que possa ter algumas limitações (até 20 acessos simultaneos, 600 Minutos de conexão por dia).
@@ -49,9 +49,9 @@ Feito isso, basta rodar o seguinte comando que o instalador do python irá insta
 
 Este projeto consiste de duas mini-aplicações que trabalham em momentos específicos:
 
-*[user_api] Esta é a estrutura responsável por cadastro de usuários, seu login e verificações necessárias, assim como integrações futuras com novas estruturas. É essêncial e o passo inicial da aplicação, em vista que é necessário se ter um usuário para poder lançar os jogos.
+*user_api: Esta é a estrutura responsável por cadastro de usuários, seu login e verificações necessárias, assim como integrações futuras com novas estruturas. É essêncial e o passo inicial da aplicação, em vista que é necessário se ter um usuário para poder lançar os jogos.
 
-*[basketball_api] Esta é a estrutura responsável pelos cadastros de partidas, controle de informações das partidas, assim como a visualização do rank por temporada, para poder funcionar apropriadamente é preciso que a varíavel de ambiente "user_id" esteja preenchida, de forma que o sistema sempre saiba qual o usuário que está mexendo na pagina.
+*basketball_api: Esta é a estrutura responsável pelos cadastros de partidas, controle de informações das partidas, assim como a visualização do rank por temporada, para poder funcionar apropriadamente é preciso que a varíavel de ambiente "user_id" esteja preenchida, de forma que o sistema sempre saiba qual o usuário que está mexendo na pagina.
 
 ## EndPoints
 
