@@ -25,8 +25,11 @@ Para rodar o projeto de forma local é necessário se possuir ao menos o Python 
 Atualmente o banco utilizado é uma base PostgreSQL disponível online através do site heroku, porém caso se deseje configurar uma de forma local, basta se instalar a base apropriada (atentar que o projeto traz conectores para banco MySQL -pymysql- e para PostgreSQL -psycopg2), e rodar o arquivo para configurar a base inicial correspondente (mysql_init_db ou postgresql_init_db).
 
 Para se baixar o arquivo diretamente do git pode se utilizar o comando abaixo:
+
  ``` git clone https://github.com/VitorinoAssuncao/basket.git ```
- GitHuble CLI
+
+GitHub CLI
+ 
  ``` gh repo clone VitorinoAssuncao/basket ```
 
 Ou simplesmente acessando  a pagina e selecionando a opção de preferencia para download.
@@ -36,11 +39,14 @@ Ou simplesmente acessando  a pagina e selecionando a opção de preferencia para
 Caso já tenha usado ambientes virtuais, deverá seguir o processo de criação comum ao mesmo, caso nunca tenha feito isso em python é questão de alguns comandos simples:
 
 Em seu terminal python digitar a seguinte linha de comando:
+
  ``` virtualenv dev_env ```
 
 Com isso será criada uma nova pasta em seu ambiente com uma estrutura base do python e o instalador pip, após isso é necessário se acionar o ambiente virtual com o seguinte comando:
- ``` dev_env\Scripts\activate```
-    *Note que esse comando deverá ser feito da pasta anterior ao dev_env, seja ela raiz ou não.*
+
+``` dev_env\Scripts\activate```
+
+*Note que esse comando deverá ser feito da pasta anterior ao dev_env, seja ela raiz ou não.*
 
 Feito isso, basta rodar o seguinte comando que o instalador do python irá instalar todas as dependências deste projeto:
  ```pip install -r requirements.txt```
