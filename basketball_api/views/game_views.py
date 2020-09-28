@@ -65,10 +65,10 @@ def update(id:int):
     else:
         return result
 
-@app_game.route("/games/<id>",methods=["DELETE"])
-def delete(id:int):
-    result =  delete_game(id)
-    return result,200
+# @app_game.route("/games/<id>",methods=["DELETE"])
+# def delete(id:int):
+#     result =  delete_game(id)
+#     return result,200
 
 # @app_game.route("/games/all",methods=["GET"])
 # def get_all():
