@@ -4,7 +4,7 @@ Esse pequeno sistema foi desenvolvido com o objetivo de permitir que pessoas cad
 
 Para tal foram selecionadas as seguintes técnologias:
 
-* [Python-Flask] Foi se utilizada a linguagem python tanto por ser robusta e eficiente, quanto pelo microframework Flask ser bastante eficiente, e possuir fácil manutenção em vista de sua leve curva de aprendizado.
+* [Python-Flask](https://flask.palletsprojects.com/en/1.1.x/) Foi se utilizada a linguagem python tanto por ser robusta e eficiente, quanto pelo microframework Flask ser bastante eficiente, e possuir fácil manutenção em vista de sua leve curva de aprendizado.
 
 * [RM - Flask-SQLAlchemy] Foi utilizado o ORM SQLAlchemy em sua versão integrada com o Flask, para que se tivesse uma separação da camada de dados do banco da codificação, permitindo dessa forma que possamos modificar o banco utilizado conforme desejado (Como pode ser observado no campo settings, onde se tem encaminhamento para um banco de dados MySQL e PostgreSQL).
 
