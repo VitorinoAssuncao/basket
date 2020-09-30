@@ -44,6 +44,8 @@ def login(login_data:str,password:str) -> User:
     if user != None:
         if check_password_hash(user.user_password,password):
             return user
+        else:
+            return False
     else:
         return False
 

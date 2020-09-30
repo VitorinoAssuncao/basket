@@ -35,8 +35,10 @@ def validate_points_is_int(points):
     if isinstance(points,int) != True:
         return "O campo 'Pontos' não recebeu um valor inteiro."
     else:
-        return True
-
+        if points > 1000:
+            return "O valor máximo do campo 'Pontos' é de 1000."
+    
+    return True
 def validate_game_data(game_data:dict):
     result_user_id = validate_user_id_is_int(game_data['user_id'])
     if result_user_id != True:
