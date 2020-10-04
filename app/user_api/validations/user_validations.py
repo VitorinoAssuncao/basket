@@ -1,4 +1,4 @@
-from user_api.models.user_models import User
+from app.user_api.models.user_models import User
 
 def validate_login(value,flag):
     if isinstance(value,str) == False:

@@ -1,7 +1,7 @@
 from werkzeug.security import generate_password_hash
 from werkzeug.security import check_password_hash
 
-from basketball_api.models.game_models import Game
+from app.basketball_api.models.game_models import Game
 
 from database.database import save
 from database.database import commit

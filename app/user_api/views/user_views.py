@@ -11,13 +11,13 @@ from settings import DEBUG
 from settings import HOST
 from settings import PORT
 
-from user_api.actions.user_actions import create
-from user_api.actions.user_actions import login
-from user_api.actions.user_actions import get_user_by_id
-from user_api.actions.user_actions import get_all_user
-from user_api.actions.user_actions import update_user
-from user_api.actions.user_actions import delete_user
-from user_api.validations.user_validations import validate_user_data
+from app.user_api.actions.user_actions import create
+from app.user_api.actions.user_actions import login
+from app.user_api.actions.user_actions import get_user_by_id
+from app.user_api.actions.user_actions import get_all_user
+from app.user_api.actions.user_actions import update_user
+from app.user_api.actions.user_actions import delete_user
+from app.user_api.validations.user_validations import validate_user_data
 
 app_user = Blueprint("app_user",__name__)
 

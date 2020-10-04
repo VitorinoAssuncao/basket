@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch, Mock, MagicMock
-from user_api.validations.user_validations import *
-from user_api.models.user_models import User
+from app.user_api.validations.user_validations import *
+from app.user_api.models.user_models import User
 
 
 

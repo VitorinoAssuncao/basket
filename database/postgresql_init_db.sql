@@ -1,8 +1,6 @@
 
 DROP TABLE IF EXISTS "public"."users";
 
-CREATE SEQUENCE IF NOT EXISTS users_users_id_seq
-
 CREATE TABLE "public"."users" (
     "user_id" int4 NOT NULL DEFAULT nextval('users_users_id_seq'::regclass),
     "user_name" text,
@@ -12,9 +10,9 @@ CREATE TABLE "public"."users" (
     PRIMARY KEY ("user_id")
 );
 
-DROP TABLE IF EXISTS "public"."games";
+CREATE SEQUENCE IF NOT EXISTS users_user_id_seq;
 
-CREATE SEQUENCE IF NOT EXISTS games_game_id_seq
+DROP TABLE IF EXISTS "public"."games";
 
 CREATE TABLE "public"."games" (
     "game_id" int4 NOT NULL DEFAULT nextval('games_game_id_seq'::regclass),
@@ -24,3 +22,5 @@ CREATE TABLE "public"."games" (
     "game_points" int8,
     PRIMARY KEY ("game_id")
 );
+
+CREATE SEQUENCE IF NOT EXISTS games_game_id_seq;

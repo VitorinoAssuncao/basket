@@ -1,5 +1,5 @@
-from basketball_api.models.game_models import Game
-from user_api.models.user_models import User
+from app.basketball_api.models.game_models import Game
+from app.user_api.models.user_models import User
 
 def validate_game_number_is_int(game_number):
     if isinstance(game_number,int) != True:

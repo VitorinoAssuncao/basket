@@ -1,7 +1,7 @@
 from werkzeug.security import generate_password_hash
 from werkzeug.security import check_password_hash
 
-from user_api.models.user_models import User
+from app.user_api.models.user_models import User
 
 from database.database import save
 from database.database import commit

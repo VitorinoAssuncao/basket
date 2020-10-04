@@ -11,14 +11,14 @@ from settings import DEBUG
 from settings import HOST
 from settings import PORT
 
-from basketball_api.actions.game_actions import create
-from basketball_api.actions.game_actions import get_game_by_id
-from basketball_api.actions.game_actions import get_all_games_by_user
-from basketball_api.actions.game_actions import get_all_games_by_seasson
-from basketball_api.actions.game_actions import get_all_games
-from basketball_api.actions.game_actions import update_game
-from basketball_api.actions.game_actions import delete_game
-from basketball_api.validations.game_validations import validate_game_data 
+from app.basketball_api.actions.game_actions import create
+from app.basketball_api.actions.game_actions import get_game_by_id
+from app.basketball_api.actions.game_actions import get_all_games_by_user
+from app.basketball_api.actions.game_actions import get_all_games_by_seasson
+from app.basketball_api.actions.game_actions import get_all_games
+from app.basketball_api.actions.game_actions import update_game
+from app.basketball_api.actions.game_actions import delete_game
+from app.basketball_api.validations.game_validations import validate_game_data 
 
 app_game = Blueprint("app_game",__name__)
 
