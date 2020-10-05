@@ -12,13 +12,13 @@ class TestUserModels(unittest.TestCase):
                     'email':'testes@gmail.com.br'
                 }
         mock_serialize.return_value =user        
-        retorno =User(
+        result =User(
                     user_login=user['login'],
                     user_password=user['password'],
                     user_name=user['name'],
                     user_email=user['email'])
-        retorno.serialize = user            
+        result.serialize = user            
 
-        self.assertEqual(retorno.serialize,user)    
+        self.assertEqual(result.serialize,user)    
       
 

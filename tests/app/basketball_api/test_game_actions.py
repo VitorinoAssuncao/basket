@@ -145,34 +145,130 @@ class TestGameActions(unittest.TestCase):
     @patch("flask_sqlalchemy._QueryProperty.__get__")
     def test_get_all_games_by_seasson(self,queryMOCK):
       
-        all_games =[ {'game_id':1,
-                    'game_user_id':2,
-                    'game_number':1,
-                    'game_seasson':23,
-                    'game_points':555
-                    },
-                    {'game_id':2,
-                    'game_user_id':2,
-                    'game_number':2,
-                    'game_seasson':23,
-                    'game_points':444
-                    },
-                    {'game_id':3,
-                    'game_user_id':2,
-                    'game_number':3,
-                    'game_seasson':23,
-                    'game_points':666
-                    }]
+        all_games =[ Game(game_id=1,
+                    game_user_id=2,
+                    game_number=1,
+                    game_seasson=23,
+                    game_points=555),
+                     Game(game_id=1,
+                    game_user_id=2,
+                    game_number=2,
+                    game_seasson=23,
+                    game_points=675),
+                     Game(game_id=1,
+                    game_user_id=2,
+                    game_number=3,
+                    game_seasson=23,
+                    game_points=879)]
        
         queryMOCK\
-        .return_value.query\
-        .return_value.filter_by\
         .return_value.filter_by\
         .return_value.order_by\
         .return_value.all\
         .return_value = all_games 
-        print(all_games)
         mock_return = queryMOCK.query.filter_by.order_by.all
-        print(mock_return)
         result = get_all_games_by_seasson(2,23)
-        self.assertEqual(result,[])      
+        self.assertEqual(result,[{'id': 1,
+                                'max_value': 555,
+                                'min_value': 555,
+                                'number': 1,
+                                'points': 555,
+                                'record_max_value': 0,
+                                'record_min_value': 0,
+                                'seasson': 23,
+                                'user_id': 2},
+                                {'id': 1,
+                                'max_value': 675,
+                                'min_value': 555,
+                                'number': 2,
+                                'points': 675,
+                                'record_max_value': 1,
+                                'record_min_value': 0,
+                                'seasson': 23,
+                                'user_id': 2},
+                                {'id': 1,
+                                'max_value': 879,
+                                'min_value': 555,
+                                'number': 3,
+                                'points': 879,
+                                'record_max_value': 2,
+                                'record_min_value': 0,
+                                'seasson': 23,
+                                'user_id': 2}])  
+
+    @patch("flask_sqlalchemy._QueryProperty.__get__")
+    def test_get_all_games_by_seasson_if_min_value_is_zero(self,queryMOCK):
+        all_games= Game(game_id=1,
+                    game_user_id=2,
+                    game_number=1,
+                    game_seasson=23,
+                    game_points=555)
+
+      
+       
+        queryMOCK\
+        .return_value.filter_by\
+        .return_value.order_by\
+        .return_value.all\
+        .return_value = [all_games] 
+        mock_return = queryMOCK.query.filter_by.order_by.all
+        result = get_all_games_by_seasson(2,23)
+        self.assertEqual(result[0]['id'],1)    
+        self.assertEqual(result[0]['user_id'],2) 
+        self.assertEqual(result[0]['points'],555)     
+
+
+
+    @patch("flask_sqlalchemy._QueryProperty.__get__")
+    def test_get_all_games_by_seasson(self,queryMOCK):
+      
+        all_games =[ Game(game_id=1,
+                    game_user_id=2,
+                    game_number=1,
+                    game_seasson=23,
+                    game_points=555),
+                     Game(game_id=1,
+                    game_user_id=2,
+                    game_number=2,
+                    game_seasson=23,
+                    game_points=321),
+                     Game(game_id=1,
+                    game_user_id=2,
+                    game_number=3,
+                    game_seasson=23,
+                    game_points=879)]
+       
+        queryMOCK\
+        .return_value.filter_by\
+        .return_value.order_by\
+        .return_value.all\
+        .return_value = all_games 
+        mock_return = queryMOCK.query.filter_by.order_by.all
+        result = get_all_games_by_seasson(2,23)
+        self.assertEqual(result,[{'id': 1,
+                                'max_value': 555,
+                                'min_value': 555,
+                                'number': 1,
+                                'points': 555,
+                                'record_max_value': 0,
+                                'record_min_value': 0,
+                                'seasson': 23,
+                                'user_id': 2},
+                                {'id': 1,
+                                'max_value': 555,
+                                'min_value': 321,
+                                'number': 2,
+                                'points': 321,
+                                'record_max_value': 0,
+                                'record_min_value': 1,
+                                'seasson': 23,
+                                'user_id': 2},
+                                {'id': 1,
+                                'max_value': 879,
+                                'min_value': 321,
+                                'number': 3,
+                                'points': 879,
+                                'record_max_value': 1,
+                                'record_min_value': 1,
+                                'seasson': 23,
+                                'user_id': 2}])      

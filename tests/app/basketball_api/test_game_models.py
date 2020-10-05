@@ -13,12 +13,12 @@ class TestGameModel(unittest.TestCase):
         }
         game.return_value = basket
               
-        retorno =Game( game_user_id=basket['user_id'],
+        result =Game( game_user_id=basket['user_id'],
                     game_number=basket['number'],
                     game_seasson=basket['seasson'],
                     game_points=basket['points'])
-        retorno.serialize = basket              
+        result.serialize = basket              
 
-        self.assertEqual(retorno.serialize,basket)    
+        self.assertEqual(result.serialize,basket)    
       
 

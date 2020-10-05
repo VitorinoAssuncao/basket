@@ -3,7 +3,7 @@ from app.user_api.models.user_models import User
 
 def validate_game_number_is_int(game_number):
     if isinstance(game_number,int) != True:
-        return "Este jogo já foi lançado para essa temporada."
+        return "O campo 'Partida' não recebeu um valor do tipo inteiro."
     else:
         return True
 

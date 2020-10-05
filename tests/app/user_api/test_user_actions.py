@@ -12,19 +12,19 @@ class TestUserActions(unittest.TestCase):
         """ verifica se o objeto foi criado corretamente"""
         mock_hash.return_value ='55555555555'
         
-        dicionario_para_teste={'login':'testes',
+        user_dict={'login':'testes',
                                 'password':'12345678',
                                 'name':'testes',
                                 'email':'testes@gmail.com.br'
                                 }
                
-        mock_save.return_value=dicionario_para_teste
+        mock_save.return_value=user_dict
         mock_commit.return_value = mock_save
-        resultado = create(dicionario_para_teste) 
+        result = create(user_dict) 
        
-        self.assertEqual(resultado['login'],dicionario_para_teste['login'])
-        self.assertEqual(resultado['name'],dicionario_para_teste['name'])
-        self.assertEqual(resultado['email'],dicionario_para_teste['email'])
+        self.assertEqual(result['login'],user_dict['login'])
+        self.assertEqual(result['name'],user_dict['name'])
+        self.assertEqual(result['email'],user_dict['email'])
     
 
 
@@ -48,7 +48,7 @@ class TestUserActions(unittest.TestCase):
             .return_value.all\
             .return_value = [1,2,3] #empty list of current product_id
 
-        mock_return = queryMOCK.query.all
+        mock_return = queryMOCK.all
         result = get_all_user()
         self.assertEqual(result,[1,2,3])
 
@@ -159,4 +159,23 @@ class TestUserActions(unittest.TestCase):
         mock_commit.return_value =mock_user
         mock_return = queryMOCK.query.get
         result = update_user(2,dicionari_atualizado)
-        self.assertIsNotNone(result)            
+        self.assertIsNotNone(result)
+
+    @patch("flask_sqlalchemy._QueryProperty.__get__")
+    def test_model(self,queryMOCK):
+        user = User(
+                    user_login=1,
+                    user_password='fgdrgdrg',
+                    user_name='dfsdfsf',
+                    user_email='grgdrgrdghyr'
+
+        )
+    #setup
+        queryMOCK\
+            .return_value.filter_by\
+            .return_value.first\
+            .return_value = user.serialize()
+
+        mock_return = queryMOCK.query.filter_by.first
+        result = get_user_by_id(1)
+        self.assertEqual(result, {'id': None, 'login': 1, 'name': 'dfsdfsf', 'email': 'grgdrgrdghyr'})                 

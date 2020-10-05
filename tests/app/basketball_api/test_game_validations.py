@@ -7,34 +7,35 @@ from app.basketball_api.validations.game_validations import *
 class TesteGameValidations(unittest.TestCase):
 
     def test_validate_game_number_is_not_int(self):
-        retorno = validate_game_number_is_int('teste')
-        self.assertEqual(retorno,"Este jogo já foi lançado para essa temporada." )
+        result = validate_game_number_is_int('teste')
+        self.assertEqual(result,"O campo 'Partida' não recebeu um valor do tipo inteiro." )
     
     def test_validate_game_number_is_int_is_true(self):
-        dicionario_para_teste={'user_id':9,
+        game_dict={'user_id':9,
                                 'number':7,
                                 'seasson':7,
                                 'points':34
                                 }
-        retorno = validate_game_number_is_int(dicionario_para_teste['seasson'])
-        self.assertEqual(retorno,True)   
+        result = validate_game_number_is_int(game_dict['seasson'])
+        self.assertEqual(result,True)   
+
 
     def test_validate_seasson_is_int(self):
-        retorno = validate_seasson_is_int('teste')
-        self.assertEqual(retorno,"O campo 'Temporada' não recebeu um valor inteiro."  )
+        result = validate_seasson_is_int('teste')
+        self.assertEqual(result,"O campo 'Temporada' não recebeu um valor inteiro."  )
 
     def test_validate_seasson_is_int_is_true(self):
-        retorno = validate_seasson_is_int(1)
-        self.assertEqual(retorno,True)   
+        result = validate_seasson_is_int(1)
+        self.assertEqual(result,True)   
 
 
     def test_validate_points_is_int(self):
-        retorno = validate_points_is_int('teste')
-        self.assertEqual(retorno,"O campo 'Pontos' não recebeu um valor inteiro." )
+        result = validate_points_is_int('teste')
+        self.assertEqual(result,"O campo 'Pontos' não recebeu um valor inteiro." )
 
     def test_validate_points_is_int_is_true(self):
-        retorno = validate_points_is_int(1)
-        self.assertEqual(retorno,True) 
+        result = validate_points_is_int(1)
+        self.assertEqual(result,True) 
   
     @patch('app.basketball_api.validations.game_validations.validate_user_id_is_int')    
     @patch('app.basketball_api.validations.game_validations.validate_user_id_exist')     
@@ -48,7 +49,7 @@ class TesteGameValidations(unittest.TestCase):
                                    mock_validate_user_id_exist,
                                    mock_validate_user_id_is_int ):
 
-        dicionario_para_teste={'user_id':9,
+        game_dict={'user_id':9,
                                 'number':7,
                                 'seasson':7,
                                 'points':34
@@ -61,8 +62,8 @@ class TesteGameValidations(unittest.TestCase):
         mock_validate_user_id_is_int.return_value = True
 
                               
-        retorno = validate_game_data(dicionario_para_teste)
-        self.assertEqual(retorno,True)       
+        result = validate_game_data(game_dict)
+        self.assertEqual(result,True)       
 
     @patch('app.basketball_api.validations.game_validations.validate_user_id_is_int')    
     @patch('app.basketball_api.validations.game_validations.validate_user_id_exist')     
@@ -76,7 +77,7 @@ class TesteGameValidations(unittest.TestCase):
                                    mock_validate_user_id_exist,
                                    mock_validate_user_id_is_int ):
 
-        dicionario_para_teste={'user_id':9,
+        game_dict={'user_id':9,
                                 'number':7,
                                 'seasson':7,
                                 'points':'34'
@@ -89,28 +90,28 @@ class TesteGameValidations(unittest.TestCase):
         mock_validate_user_id_is_int.return_value = True
 
                               
-        retorno = validate_game_data(dicionario_para_teste)
-        self.assertEqual(retorno,"O campo 'Pontos' não recebeu um valor inteiro.")       
+        result = validate_game_data(game_dict)
+        self.assertEqual(result,"O campo 'Pontos' não recebeu um valor inteiro.")       
     
 
     def test_validate_points_is_int_is_2000(self):
-        retorno = validate_points_is_int(2000)
-        self.assertEqual(retorno,"O valor máximo do campo 'Pontos' é de 1000." )  
+        result = validate_points_is_int(2000)
+        self.assertEqual(result,"O valor máximo do campo 'Pontos' é de 1000." )  
 
 
 
     def test_validate_game_data(self):
-        dicionario_para_teste={'user_id':'2222',
+        game_dict={'user_id':'2222',
                                 'number':'12345678',
                                 'seasson':'testes',
                                 'points':'2222'
                                 }
-        retorno = validate_game_data(dicionario_para_teste)
-        self.assertEqual(retorno,"O campo 'Código de Usuário' não recebeu um valor inteiro.")
+        result = validate_game_data(game_dict)
+        self.assertEqual(result,"O campo 'Código de Usuário' não recebeu um valor inteiro.")
 
     @patch("flask_sqlalchemy._QueryProperty.__get__")
     def test_validate_game_data_if_user_id_is_int(self,queryMOCK):
-        dicionario_para_teste={'user_id':2222,
+        game_dict={'user_id':2222,
                                 'number':'12345678',
                                 'seasson':'testes',
                                 'points':2222
@@ -121,12 +122,30 @@ class TesteGameValidations(unittest.TestCase):
         .return_value = None
 
         mock_return = queryMOCK.query.filter_by.first
-        retorno = validate_game_data(dicionario_para_teste)
-        self.assertEqual(retorno,'O usuário informado não existe, favor verificar.')   
+        result = validate_game_data(game_dict)
+        self.assertEqual(result,'O usuário informado não existe, favor verificar.')  
+
+    @patch("flask_sqlalchemy._QueryProperty.__get__")
+    def test_validate_game_data_if_user_id_is_int_false(self,queryMOCK):
+        game_dict={'user_id':2222,
+                                'number':'12',
+                                'seasson':5,
+                                'points':2222
+                                }
+        queryMOCK\
+        .return_value.filter_by\
+        .return_value.first\
+        .return_value = game_dict
+
+        mock_return = queryMOCK.query.filter_by.first
+        result = validate_game_data(game_dict)
+        self.assertEqual(result,"O campo 'Partida' não recebeu um valor do tipo inteiro.")      
+
+
 
     @patch("flask_sqlalchemy._QueryProperty.__get__")
     def test_validate_game_data_if_user_id_is_not_int(self,queryMOCK):
-        dicionario_para_teste={'user_id':2222,
+        game_dict={'user_id':2222,
                                 'number':'12345678',
                                 'seasson':'testes',
                                 'points':2222
@@ -134,16 +153,16 @@ class TesteGameValidations(unittest.TestCase):
         queryMOCK\
         .return_value.filter_by\
         .return_value.first\
-        .return_value = dicionario_para_teste
+        .return_value = game_dict
 
         mock_return = queryMOCK.query.filter_by.first
-        retorno = validate_game_data(dicionario_para_teste)
-        self.assertEqual(retorno,"O campo 'Temporada' não recebeu um valor inteiro.") 
+        result = validate_game_data(game_dict)
+        self.assertEqual(result,"O campo 'Temporada' não recebeu um valor inteiro.") 
 
     @patch('app.basketball_api.validations.game_validations.validate_game_number_is_int')
     @patch("flask_sqlalchemy._QueryProperty.__get__")
     def test_validate_game_number_is_repeated(self,queryMOCK,mock_int):
-        dicionario_para_teste={'user_id':2222,
+        game_dict={'user_id':2222,
                                     'number':2222,
                                     'seasson':2222,
                                     'points':2222
@@ -151,16 +170,16 @@ class TesteGameValidations(unittest.TestCase):
         queryMOCK\
         .return_value.filter_by\
         .return_value.first\
-        .return_value = dicionario_para_teste 
+        .return_value = game_dict 
         mock_int.return_value = True                        
-        retorno = validate_game_data(dicionario_para_teste)
-        self.assertEqual(retorno, 'Este jogo já foi lançado para essa temporada.')    
+        result = validate_game_data(game_dict)
+        self.assertEqual(result, 'Este jogo já foi lançado para essa temporada.')    
    
 
     @patch('app.basketball_api.validations.game_validations.validate_game_number_is_int')
     @patch("flask_sqlalchemy._QueryProperty.__get__")
     def test_validate_game_number_is_not_repeated(self,queryMOCK,mock_int):
-        dicionario_para_teste={'user_id':678787,
+        game_dict={'user_id':678787,
                                     'number':8989,
                                     'seasson':676,
                                     'points':76567
@@ -170,7 +189,7 @@ class TesteGameValidations(unittest.TestCase):
         .return_value.first\
         .return_value = None   
         mock_int.return_value = True                   
-        retorno = validate_game_number_is_not_repeated(dicionario_para_teste['number'],
-                                                        dicionario_para_teste['user_id'],
-                                                        dicionario_para_teste['seasson'])
-        self.assertEqual(retorno,True)                                       
+        result = validate_game_number_is_not_repeated(game_dict['number'],
+                                                        game_dict['user_id'],
+                                                        game_dict['seasson'])
+        self.assertEqual(result,True)                                       
