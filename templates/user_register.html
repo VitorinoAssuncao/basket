@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/base.css">
+
+    <!-- Icon CSS -->
+    <link rel="icon" type="image/png" href="../static/icons/favicon.ico"/>
+	<link rel="stylesheet" type="text/css" href="../static/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+
+    <!-- font CSS -->
+    <link rel="stylesheet" type="text/css" href="../static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+
+
+    <title>Liga de Esportes Escolares de Blumenau - Delegação de Basquete</title>
+  </head>
+  <body>
+	<div class="limiter">
+		<div class="container-login">
+			<div class="wrap-login">
+                <!-- Top of the Form-->
+                <div class="login-form-title" style="background-image: url(../static/img/title_basquete.jpg);">
+                    <span class="login-form-title-text">
+                        Cadastro de Usuário
+                    </span>
+                </div>
+                <!-- Body of the Form -->
+                <form class="login-form" action="" method="POST">
+
+                    <div class="wrap-input m-b-26">
+                        <span class="label-input">Nome Completo</span>
+                        <input class="input" type="text" name="fullname" placeholder="Digite seu nome completo" value="{{
+                            request.form.fullname}}">
+						<span class="focus-input"></span>
+                    </div>                    
+
+                    <div class="wrap-input m-b-26">
+                        <span class="label-input">Usuário</span>
+                        <input class="input" type="text" name="username" placeholder="Entre com o usuário desejado" value="{{
+                            request.form.username}}">
+						<span class="focus-input"></span>
+                    </div>
+
+                    <div class="wrap-input m-b-26" data-validate="A senha é obrigatória">
+                        <span class="label-input">Senha</span>
+                        <input class="input" type="password" name="password" placeholder="Digite a senha desejada" value="{{
+                            request.form.password}}">
+						<span class="focus-input"></span>
+                    </div>
+
+                    <div class="wrap-input m-b-26">
+                        <span class="label-input">Email</span>
+                        <input class="input" type="text" name="email" placeholder="Entre com o seu email" value="{{
+                            request.form.email}}">
+						<span class="focus-input"></span>
+                    </div>
+
+                    <div class="wrap_form_btn">
+                        <button class="form_btn">
+                            <p>Confirmar Cadastro</p>
+                        </button>
+                    </div>
+                    {% if error %}
+                    <div class="alert alert-warning m-3" role="alert"> {{ error }} </div>
+                    {% endif %}
+                </form>
+            </div>
+        </div>           
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>
